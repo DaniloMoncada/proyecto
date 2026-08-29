@@ -1,0 +1,495 @@
+# horasapp.kv - Archivo de interfaz para la aplicación de registro de horas
+
+<MainScreen>:
+    orientation: 'vertical'
+    padding: [15, 10, 15, 10]
+    spacing: 6
+    
+    # Título
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: (1, 0.04)
+        padding: [10, 5]
+        spacing: 10
+        
+        Label:
+            text: '[b]REGISTRO DE HORAS[/b]'
+            markup: True
+            font_size: 20
+            size_hint: (0.7, 1)
+            color: (0.1, 0.4, 0.8, 1)
+            halign: 'center'
+            valign: 'middle'
+        
+        Label:
+            id: fecha_header
+            text: ''
+            font_size: 14
+            size_hint: (0.15, 1)
+            color: (1, 1, 1, 1)
+            halign: 'right'
+            valign: 'middle'
+    
+    Widget:
+        size_hint: (1, 0.005)
+    
+    # DATOS DEL CLIENTE
+    Label:
+        text: '[b]DATOS DEL CLIENTE[/b]'
+        markup: True
+        font_size: 16
+        size_hint: (1, 0.025)
+        color: (0.1, 0.4, 0.8, 1)
+        halign: 'left'
+        valign: 'middle'
+    
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: (1, 0.045)
+        spacing: 1
+        
+        Label:
+            text: 'Nombre del Cliente'
+            font_size: 13
+            size_hint: (1, 0.3)
+            color: (1, 1, 1, 1)
+            halign: 'left'
+            valign: 'middle'
+        
+        TextInput:
+            id: cliente_input
+            hint_text: 'Ej: Juan Pérez'
+            multiline: False
+            font_size: 15
+            size_hint: (1, 0.7)
+            background_color: (1, 1, 1, 1)
+            foreground_color: (0.1, 0.1, 0.1, 1)
+            cursor_color: (0.1, 0.4, 0.8, 1)
+            padding: [10, 5]
+    
+    # FECHA
+    Label:
+        text: 'FECHA'
+        font_size: 13
+        size_hint: (1, 0.02)
+        color: (1, 1, 1, 1)
+        halign: 'left'
+        valign: 'middle'
+    
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: (1, 0.045)
+        spacing: 5
+        
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.33, 1)
+            spacing: 1
+            
+            Label:
+                text: 'Día'
+                font_size: 11
+                size_hint: (1, 0.3)
+                color: (1, 1, 1, 1)
+                halign: 'center'
+                valign: 'middle'
+            
+            TextInput:
+                id: dia_input
+                text: ''
+                multiline: False
+                font_size: 16
+                input_filter: 'int'
+                size_hint: (1, 0.7)
+                background_color: (1, 1, 1, 1)
+                foreground_color: (0.1, 0.1, 0.1, 1)
+                cursor_color: (0.1, 0.4, 0.8, 1)
+                padding: [10, 5]
+                halign: 'center'
+        
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.33, 1)
+            spacing: 1
+            
+            Label:
+                text: 'Mes'
+                font_size: 11
+                size_hint: (1, 0.3)
+                color: (1, 1, 1, 1)
+                halign: 'center'
+                valign: 'middle'
+            
+            TextInput:
+                id: mes_input
+                text: ''
+                multiline: False
+                font_size: 16
+                input_filter: 'int'
+                size_hint: (1, 0.7)
+                background_color: (1, 1, 1, 1)
+                foreground_color: (0.1, 0.1, 0.1, 1)
+                cursor_color: (0.1, 0.4, 0.8, 1)
+                padding: [10, 5]
+                halign: 'center'
+        
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.34, 1)
+            spacing: 1
+            
+            Label:
+                text: 'Año'
+                font_size: 11
+                size_hint: (1, 0.3)
+                color: (1, 1, 1, 1)
+                halign: 'center'
+                valign: 'middle'
+            
+            TextInput:
+                id: año_input
+                text: ''
+                multiline: False
+                font_size: 16
+                input_filter: 'int'
+                size_hint: (1, 0.7)
+                background_color: (1, 1, 1, 1)
+                foreground_color: (0.1, 0.1, 0.1, 1)
+                cursor_color: (0.1, 0.4, 0.8, 1)
+                padding: [10, 5]
+                halign: 'center'
+    
+    # Botón restablecer fecha
+    Button:
+        text: '[b]📅 RESTABLECER FECHA ACTUAL[/b]'
+        markup: True
+        font_size: 13
+        size_hint: (1, 0.03)
+        background_color: (0.6, 0.6, 0.6, 1)
+        color: (1, 1, 1, 1)
+        background_normal: ''
+        on_press: root.establecer_fecha_actual()
+    
+    # AGREGAR HORARIO
+    Label:
+        text: '[b]AGREGAR HORARIO[/b]'
+        markup: True
+        font_size: 16
+        size_hint: (1, 0.025)
+        color: (0.1, 0.4, 0.8, 1)
+        halign: 'left'
+        valign: 'middle'
+    
+    # HORA DE ENTRADA
+    Label:
+        text: 'HORA DE ENTRADA'
+        font_size: 13
+        size_hint: (1, 0.02)
+        color: (1, 1, 1, 1)
+        halign: 'center'
+        valign: 'middle'
+    
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: (1, 0.05)
+        spacing: 5
+        
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.5, 1)
+            spacing: 1
+            
+            Label:
+                text: 'Horas'
+                font_size: 12
+                size_hint: (1, 0.3)
+                color: (1, 1, 1, 1)
+                halign: 'center'
+                valign: 'middle'
+            
+            TextInput:
+                id: hora_entrada_input
+                hint_text: '09'
+                multiline: False
+                font_size: 16
+                input_filter: 'int'
+                size_hint: (1, 0.7)
+                background_color: (1, 1, 1, 1)
+                foreground_color: (0.1, 0.1, 0.1, 1)
+                cursor_color: (0.1, 0.4, 0.8, 1)
+                padding: [10, 5]
+                halign: 'center'
+        
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.5, 1)
+            spacing: 1
+            
+            Label:
+                text: 'Minutos'
+                font_size: 12
+                size_hint: (1, 0.3)
+                color: (1, 1, 1, 1)
+                halign: 'center'
+                valign: 'middle'
+            
+            TextInput:
+                id: min_entrada_input
+                hint_text: '00'
+                multiline: False
+                font_size: 16
+                input_filter: 'int'
+                size_hint: (1, 0.7)
+                background_color: (1, 1, 1, 1)
+                foreground_color: (0.1, 0.1, 0.1, 1)
+                cursor_color: (0.1, 0.4, 0.8, 1)
+                padding: [10, 5]
+                halign: 'center'
+    
+    # HORA DE SALIDA
+    Label:
+        text: 'HORA DE SALIDA'
+        font_size: 13
+        size_hint: (1, 0.02)
+        color: (1, 1, 1, 1)
+        halign: 'center'
+        valign: 'middle'
+    
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: (1, 0.05)
+        spacing: 5
+        
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.5, 1)
+            spacing: 1
+            
+            Label:
+                text: 'Horas'
+                font_size: 12
+                size_hint: (1, 0.3)
+                color: (1, 1, 1, 1)
+                halign: 'center'
+                valign: 'middle'
+            
+            TextInput:
+                id: hora_salida_input
+                hint_text: '13'
+                multiline: False
+                font_size: 16
+                input_filter: 'int'
+                size_hint: (1, 0.7)
+                background_color: (1, 1, 1, 1)
+                foreground_color: (0.1, 0.1, 0.1, 1)
+                cursor_color: (0.1, 0.4, 0.8, 1)
+                padding: [10, 5]
+                halign: 'center'
+        
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.5, 1)
+            spacing: 1
+            
+            Label:
+                text: 'Minutos'
+                font_size: 12
+                size_hint: (1, 0.3)
+                color: (1, 1, 1, 1)
+                halign: 'center'
+                valign: 'middle'
+            
+            TextInput:
+                id: min_salida_input
+                hint_text: '30'
+                multiline: False
+                font_size: 16
+                input_filter: 'int'
+                size_hint: (1, 0.7)
+                background_color: (1, 1, 1, 1)
+                foreground_color: (0.1, 0.1, 0.1, 1)
+                cursor_color: (0.1, 0.4, 0.8, 1)
+                padding: [10, 5]
+                halign: 'center'
+    
+    # Label para mostrar horas calculadas
+    Label:
+        id: horas_calculadas_label
+        text: '⏱ Horas calculadas: 0.0h'
+        font_size: 13
+        size_hint: (1, 0.02)
+        color: (0, 0.6, 0, 1)
+        halign: 'center'
+        valign: 'middle'
+    
+    # PRECIO POR HORA
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: (1, 0.045)
+        spacing: 1
+        
+        Label:
+            text: 'Precio por Hora ($)'
+            font_size: 13
+            size_hint: (1, 0.3)
+            color: (1, 1, 1, 1)
+            halign: 'left'
+            valign: 'middle'
+        
+        TextInput:
+            id: precio_input
+            hint_text: 'Ej: 15.50'
+            multiline: False
+            font_size: 15
+            input_filter: 'float'
+            size_hint: (1, 0.7)
+            background_color: (1, 1, 1, 1)
+            foreground_color: (0.1, 0.1, 0.1, 1)
+            cursor_color: (0.1, 0.4, 0.8, 1)
+            padding: [10, 5]
+    
+    # Botón AGREGAR
+    Button:
+        text: '[b]AGREGAR HORARIO[/b]'
+        markup: True
+        font_size: 16
+        size_hint: (1, 0.045)
+        background_color: (0.1, 0.4, 0.8, 1)
+        color: (1, 1, 1, 1)
+        background_normal: ''
+        on_press: root.agregar_horario()
+    
+    # Botón CALCULAR
+    Button:
+        text: '[b]💰 CALCULAR PRECIO TOTAL[/b]'
+        markup: True
+        font_size: 15
+        size_hint: (1, 0.04)
+        background_color: (0, 0.6, 0, 1)
+        color: (1, 1, 1, 1)
+        background_normal: ''
+        on_press: root.calcular_precio_total()
+    
+    Widget:
+        size_hint: (1, 0.005)
+    
+    # LISTA DE REGISTROS
+    Label:
+        text: '[b]HORARIOS AGREGADOS[/b]'
+        markup: True
+        font_size: 15
+        size_hint: (1, 0.025)
+        color: (0.1, 0.4, 0.8, 1)
+        halign: 'left'
+        valign: 'middle'
+    
+    ScrollView:
+        size_hint: (1, 0.12)
+        bar_width: 5
+        
+        GridLayout:
+            id: lista_layout
+            cols: 1
+            spacing: 2
+            size_hint_y: None
+            height: self.minimum_height
+    
+    Widget:
+        size_hint: (1, 0.005)
+    
+    # RESULTADOS
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint: (1, 0.1)
+        padding: [5, 5]
+        spacing: 2
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: (1, 0.45)
+            spacing: 10
+            
+            Label:
+                text: '[b]HORAS TOTALES[/b]'
+                markup: True
+                font_size: 15
+                size_hint: (0.5, 1)
+                color: (0.1, 0.4, 0.8, 1)
+                halign: 'left'
+                valign: 'middle'
+            
+            Label:
+                id: horas_total_label
+                text: '[b]0.0 h[/b]'
+                markup: True
+                font_size: 17
+                size_hint: (0.5, 1)
+                color: (0, 0.6, 0, 1)
+                halign: 'right'
+                valign: 'middle'
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint: (1, 0.45)
+            spacing: 10
+            
+            Label:
+                text: '[b]TOTAL A COBRAR[/b]'
+                markup: True
+                font_size: 15
+                size_hint: (0.5, 1)
+                color: (0.1, 0.4, 0.8, 1)
+                halign: 'left'
+                valign: 'middle'
+            
+            Label:
+                id: precio_total_label
+                text: '[b]$0.00[/b]'
+                markup: True
+                font_size: 18
+                size_hint: (0.5, 1)
+                color: (0, 0.6, 0, 1)
+                halign: 'right'
+                valign: 'middle'
+    
+    # BOTONES DE ACCIÓN
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint: (1, 0.06)
+        spacing: 5
+        
+        Button:
+            text: '[b]LIMPIAR[/b]'
+            markup: True
+            font_size: 14
+            background_color: (0.8, 0.2, 0.2, 1)
+            color: (1, 1, 1, 1)
+            background_normal: ''
+            on_press: root.limpiar_todo()
+        
+        Button:
+            text: '[b]REPORTE[/b]'
+            markup: True
+            font_size: 14
+            background_color: (0.1, 0.4, 0.8, 1)
+            color: (1, 1, 1, 1)
+            background_normal: ''
+            on_press: root.generar_reporte()
+        
+        Button:
+            text: '[b]📊 EXCEL[/b]'
+            markup: True
+            font_size: 14
+            background_color: (0.2, 0.6, 0.2, 1)
+            color: (1, 1, 1, 1)
+            background_normal: ''
+            on_press: root.guardar_excel()
+    
+    # Footer
+    Label:
+        text: ' Sistema de Registro de Horas v4.0'
+        font_size: 11
+        size_hint: (1, 0.02)
+        color: (0.5, 0.5, 0.5, 1)
+        halign: 'center'
+        valign: 'middle'
