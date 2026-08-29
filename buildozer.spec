@@ -36,7 +36,7 @@ version = 1.0.0
 
 # (list) Requisitos de la aplicación
 # IMPORTANTE: Añadimos pandas, openpyxl y numpy (necesario para pandas)
-requirements = python3,kivy==2.2.0,pandas,openpyxl,numpy
+requirements = python3==3.7.3,hostpython==3.7.6, kivy,pillow
 
 # (str) Pantalla de presentación (presplash)
 #presplash.filename = %(source.dir)s/data/presplash.png
@@ -58,7 +58,7 @@ orientation = portrait
 # author = Tu Nombre
 
 # Versión de Kivy para OSX
-osx.kivy_version = 2.2.0
+osx.kivy_version = 3.7.6
 
 #
 # Android specific
